@@ -45,7 +45,7 @@ const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
 // Get the temperature element
 
-
+const errormsg = document.getElementById("error")
 
 
 
@@ -59,16 +59,21 @@ const getWeatherData = async ()=>{
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&appid=${API_KEY}`;
     try{
         const response = await fetch(url);
-        if(!response.ok){
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+      
+            if(!response.ok){
+                errormsg.classList.remove('hidden');
+             } 
+        
+             setInterval(() => {
+                errorMsg.classList.add('hidden');
+            }, 3000);
         const data = await response.json();
         // console.log(data);
         const {main, name, weather, sys} = data;
         const tempRound =  Math.round(main.temp - 273.15);
         const tempMin = Math.round(main.temp_min - 273.15);
         const tempMax = Math.round(main.temp_max - 273.15);
-        const emoji = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
+        const emoji = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
         // Create a new card element
         const newCard = document.createElement("div");
         newCard.className = "weather-card"; // Apply the correct class
@@ -131,7 +136,7 @@ async function generateWeatherCards() {
         const tempRound = Math.round(main.temp - 273.15);
         const tempMin = Math.round(main.temp_min - 273.15);
         const tempMax = Math.round(main.temp_max - 273.15);
-        const emoji = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
+        const emoji = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
 
         // Create a new weather card
         const newCard = document.createElement("div");
