@@ -7,11 +7,11 @@ themeToggle.addEventListener('click', () => {
     if (body.classList.contains('dark-mode')) {
         body.classList.remove('dark-mode');
         body.classList.add('light-mode');
-        themeToggle.textContent = '🌙';
-    } else {
-        body.classList.remove('dark-mode');
-        body.classList.add('light-mode');
         themeToggle.textContent = '☀️';
+    } else {
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+        themeToggle.textContent = '🌜';
     }
 });
 
